@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import EASIPRO
 
 class MainViewController: UITableViewController {
     
+    
+    let smartClient = SMARTManager.shared.client
+    
+    var measures : [PROMeasure2]?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .automatic
@@ -32,4 +38,11 @@ class MainViewController: UITableViewController {
         return 0
     }
 
+    @IBAction func refreshPage(_ sender: Any) {
+        SMARTManager.shared.client.ready { [unowned self] (error) in
+            DispatchQueue.main.async {
+                SMARTManager.shared.showLoginController(over: self)
+            }
+        }
+    }
 }
