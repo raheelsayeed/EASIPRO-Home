@@ -1,0 +1,6 @@
+[submodule "Modules/EASIPRO"]
+	path = Modules/EASIPRO
+	url = https://github.com/raheelsayeed/EASIPRO.git
+[submodule "Modules/AssessmentCenter"]
+	path = Modules/AssessmentCenter
+	url = https://github.com/raheelsayeed/AssessmentCenter.git
