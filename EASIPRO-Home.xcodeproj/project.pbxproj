@@ -15,10 +15,9 @@
 		D45DE6222098FE8A00D3C6A2 /* AssessmentCenter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45DE5F72098FD5E00D3C6A2 /* AssessmentCenter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D45DE6252098FE9A00D3C6A2 /* EASIPRO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45DE5FD2098FD6600D3C6A2 /* EASIPRO.framework */; };
 		D45DE6262098FE9A00D3C6A2 /* EASIPRO.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45DE5FD2098FD6600D3C6A2 /* EASIPRO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D45DE62D2098FFCE00D3C6A2 /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45DE62C2098FFCE00D3C6A2 /* SwiftFHIR.framework */; };
-		D45DE62E2098FFCE00D3C6A2 /* SwiftFHIR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45DE62C2098FFCE00D3C6A2 /* SwiftFHIR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D45DE63A2099FA3D00D3C6A2 /* PROMCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45DE6392099FA3D00D3C6A2 /* PROMCell.swift */; };
 		D45DE641209A0F4000D3C6A2 /* PROInsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45DE640209A0F4000D3C6A2 /* PROInsightsViewController.swift */; };
+		D461C7FC209A4C7F0084A85C /* PROMDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D461C7FB209A4C7F0084A85C /* PROMDetailViewController.swift */; };
 		D4C9EA582098F57E006D41DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C9EA572098F57E006D41DB /* AppDelegate.swift */; };
 		D4C9EA5F2098F57E006D41DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C9EA5D2098F57E006D41DB /* Main.storyboard */; };
 		D4C9EA612098F57E006D41DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4C9EA602098F57E006D41DB /* Assets.xcassets */; };
@@ -122,7 +121,6 @@
 			files = (
 				D45DE6262098FE9A00D3C6A2 /* EASIPRO.framework in Embed Frameworks */,
 				D45DE6222098FE8A00D3C6A2 /* AssessmentCenter.framework in Embed Frameworks */,
-				D45DE62E2098FFCE00D3C6A2 /* SwiftFHIR.framework in Embed Frameworks */,
 				D45DE61E2098FE7E00D3C6A2 /* ResearchKit.framework in Embed Frameworks */,
 				D45DE6192098FE6D00D3C6A2 /* SMART.framework in Embed Frameworks */,
 			);
@@ -139,6 +137,7 @@
 		D45DE62C2098FFCE00D3C6A2 /* SwiftFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45DE6392099FA3D00D3C6A2 /* PROMCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PROMCell.swift; sourceTree = "<group>"; };
 		D45DE640209A0F4000D3C6A2 /* PROInsightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PROInsightsViewController.swift; sourceTree = "<group>"; };
+		D461C7FB209A4C7F0084A85C /* PROMDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PROMDetailViewController.swift; sourceTree = "<group>"; };
 		D4C9EA542098F57E006D41DB /* EASIPRO-Home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EASIPRO-Home.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C9EA572098F57E006D41DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4C9EA5E2098F57E006D41DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -155,7 +154,6 @@
 			files = (
 				D45DE6252098FE9A00D3C6A2 /* EASIPRO.framework in Frameworks */,
 				D45DE6212098FE8A00D3C6A2 /* AssessmentCenter.framework in Frameworks */,
-				D45DE62D2098FFCE00D3C6A2 /* SwiftFHIR.framework in Frameworks */,
 				D45DE61D2098FE7E00D3C6A2 /* ResearchKit.framework in Frameworks */,
 				D45DE6182098FE6D00D3C6A2 /* SMART.framework in Frameworks */,
 			);
@@ -232,6 +230,7 @@
 				D4C9EA6B2098F66F006D41DB /* MainViewController.swift */,
 				D45DE6392099FA3D00D3C6A2 /* PROMCell.swift */,
 				D45DE640209A0F4000D3C6A2 /* PROInsightsViewController.swift */,
+				D461C7FB209A4C7F0084A85C /* PROMDetailViewController.swift */,
 			);
 			path = "EASIPRO-Home";
 			sourceTree = "<group>";
@@ -390,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D461C7FC209A4C7F0084A85C /* PROMDetailViewController.swift in Sources */,
 				D45DE63A2099FA3D00D3C6A2 /* PROMCell.swift in Sources */,
 				D4C9EA582098F57E006D41DB /* AppDelegate.swift in Sources */,
 				D4C9EA6C2098F66F006D41DB /* MainViewController.swift in Sources */,

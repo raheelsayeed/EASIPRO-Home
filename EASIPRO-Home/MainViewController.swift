@@ -17,8 +17,8 @@ class MainViewController: UITableViewController {
 //    var measures : [PROMeasure2]?
     
     var measures = ["PROM Pain Inference",
-                "PROM Pain Depression",
-                "PROMIS Anxiety"]
+                    "PROM Pain Depression",
+                    "PROMIS Anxiety"]
     
 
     
@@ -26,8 +26,6 @@ class MainViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .automatic
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +48,7 @@ class MainViewController: UITableViewController {
         let measure = measures[indexPath.row]
         cell.lblTitle.text = measure
         cell.lblSubtitle.text = "ORDER BY Dr. RAHEEL"
+        cell.chartView.points = [50,70,60,85]
         return cell
     }
     
