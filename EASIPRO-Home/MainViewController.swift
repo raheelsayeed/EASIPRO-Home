@@ -14,12 +14,18 @@ class MainViewController: UITableViewController {
     
     let smartClient = SMARTManager.shared.client
     
-    var measures : [PROMeasure2]?
+//    var measures : [PROMeasure2]?
+    
+    var measures = ["PROM Pain Inference",
+                "PROM Pain Depression",
+                "PROMIS Anxiety"]
+    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .automatic
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
         
         
     }
@@ -31,13 +37,34 @@ class MainViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return measures.count
     }
-
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PROMCell", for: indexPath) as! PROMCell
+        
+        let measure = measures[indexPath.row]
+        cell.lblTitle.text = measure
+        cell.lblSubtitle.text = "ORDER BY Dr. RAHEEL"
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    @IBAction func showPatientProfile(_ sender: Any) {
+        guard let patient = SMARTManager.shared.patient else {
+            print("No patient")
+            return
+        }
+        
+        print("show profile")
+    }
+    
     @IBAction func refreshPage(_ sender: Any) {
         SMARTManager.shared.client.ready { [unowned self] (error) in
             DispatchQueue.main.async {

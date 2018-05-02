@@ -5,9 +5,17 @@
 //  Created by Raheel Sayeed on 5/1/18.
 //  Copyright © 2018 Boston Children's Hospital. All rights reserved.
 //
+/*
+ Heart Icon: https://www.iconfinder.com/icons/1118211/disease_graph_heart_medical_medicine_icon#size=512
+ 
+ 
+ */
 
 import UIKit
 import EASIPRO
+
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,18 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        
-        let baseURL = URL(string: "https://launch.smarthealthit.org/v/r3/sim/eyJoIjoiMSIsImkiOiIxIiwiZSI6InNtYXJ0LVByYWN0aXRpb25lci03MTAzMjcwMiJ9/fhir")!
-        let settings = [ "client_name" : "EASIPRO",
-                         "redirect"    : "easipro-home://callback",
-                         "scope"       : "openid profile user/*.*",
-                         "client_id"   : "7c5dc7c9-74ca-451a-bd3d-eeb21bb66e93",
-                         ]
-        
-        
-//        SMARTManager.shared.client = SMARTManager.client(with: baseURL, settings: settings)
-        
+//        window?.tintColor = UIColor.white
         
         
         return true
