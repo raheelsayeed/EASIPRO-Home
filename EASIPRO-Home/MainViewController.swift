@@ -14,19 +14,22 @@ class MainViewController: UITableViewController {
     
     let smartClient = SMARTManager.shared.client
     
-//    var measures : [PROMeasure2]?
-    
-    var measures = ["PROM Pain Inference",
-                    "PROM Pain Depression",
-                    "PROMIS Anxiety"]
-    
+    var measures : [PROMeasure2]?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .automatic
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
+		loadMeasures()
     }
+	
+	
+	// TODO: remove this, used for testing
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		tableView.reloadData()
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -39,16 +42,13 @@ class MainViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return measures.count
+        return measures?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PROMCell", for: indexPath) as! PROMCell
-        
-        let measure = measures[indexPath.row]
-        cell.lblTitle.text = measure
-        cell.lblSubtitle.text = "ORDER BY Dr. RAHEEL"
-        cell.chartView.points = [50,70,60,85]
+        let measure = measures![indexPath.row]
+		cell.configure(for: measure)
         return cell
     }
     
@@ -65,10 +65,50 @@ class MainViewController: UITableViewController {
     }
     
     @IBAction func refreshPage(_ sender: Any) {
-        SMARTManager.shared.client.ready { [unowned self] (error) in
-            DispatchQueue.main.async {
-                SMARTManager.shared.showLoginController(over: self)
-            }
-        }
+		loadMeasures()
     }
+	
+	@IBAction func loginAction(_ sender: Any) {
+		SMARTManager.shared.client.ready { [unowned self] (error) in
+			DispatchQueue.main.async {
+				SMARTManager.shared.showLoginController(over: self)
+			}
+		}
+	}
+	open func loadMeasures() {
+		if nil != measures { return }
+		markBusy()
+		PROMeasure2.fetchPrescribingResources { [weak self] (measures, error) in
+			if let m = measures {
+				self?.measures = m
+			}
+			if let error = error {
+				print(error as Any)
+			}
+			DispatchQueue.main.async {
+				self?.markStandby()
+			}
+		}
+		
+	}
+	open func markBusy() {
+		self.title = "Loading.."
+	}
+	
+	
+	
+	
+	open func markStandby() {
+		self.title = "PRO-Measures"
+		self.tableView.reloadData()
+	}
+	
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		print(segue)
+		if let detailVC = segue.destination as? PROMDetailViewController, segue.identifier == "showDetail" {
+			let measure = measures![(tableView.indexPathForSelectedRow?.row)!]
+			detailVC.measure = measure
+		}
+	}
 }
