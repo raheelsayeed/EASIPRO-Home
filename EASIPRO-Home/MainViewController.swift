@@ -24,6 +24,12 @@ class MainViewController: UITableViewController {
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
 		loadMeasures()
     }
+    class func Today()->String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        formatter.timeStyle = .none
+        return formatter.string(from: Date())
+    }
 	
 	
 	// TODO: remove this, used for testing
@@ -47,7 +53,7 @@ class MainViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "DUE TODAY"
+        return MainViewController.Today()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
