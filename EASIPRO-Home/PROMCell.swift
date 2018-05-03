@@ -27,6 +27,8 @@ class PROMCell: UITableViewCell {
     
     func configure(for measure: PROMeasure2) {
         lblTitle.text = measure.title
+		chartView.points = measure.scores
+		lblSubtitle.text = measure.identifier
     }
 
 }
