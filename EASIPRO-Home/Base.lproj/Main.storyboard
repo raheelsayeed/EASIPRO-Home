@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -52,13 +53,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Pain Inference" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oiw-Xg-8Of">
-                                            <rect key="frame" x="16" y="31" width="343" height="21"/>
+                                            <rect key="frame" x="16" y="31" width="343" height="21.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ORDER BY Dr. O'NEIL" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPw-zE-hU7">
-                                            <rect key="frame" x="16" y="58" width="343" height="14"/>
+                                            <rect key="frame" x="16" y="58.5" width="343" height="13.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                             <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -103,7 +104,7 @@
                                     <outlet property="lblStatus" destination="FzD-gy-lmJ" id="ccQ-X4-M4B"/>
                                     <outlet property="lblSubtitle" destination="SPw-zE-hU7" id="shw-Dk-Qcp"/>
                                     <outlet property="lblTitle" destination="Oiw-Xg-8Of" id="tbu-JM-gcK"/>
-                                    <segue destination="zpE-bj-PIR" kind="show" id="cwP-WJ-dSn"/>
+                                    <segue destination="zpE-bj-PIR" kind="show" identifier="showDetail" id="cwP-WJ-dSn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -113,16 +114,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="PRO Measures" id="uc9-Rb-71v">
-                        <barButtonItem key="leftBarButtonItem" title="LOGIN" id="Mpn-3L-wJ1">
+                        <barButtonItem key="leftBarButtonItem" title="REFRESH" id="wEa-6C-qc5">
                             <connections>
-                                <action selector="refreshPage:" destination="gO9-vI-EM4" id="RUo-GE-P37"/>
+                                <action selector="refreshPage:" destination="gO9-vI-EM4" id="0UV-f3-BLz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Profile" image="profileIcon" style="plain" id="z8B-RZ-icJ">
-                            <connections>
-                                <action selector="showPatientProfile:" destination="gO9-vI-EM4" id="JuA-cx-akQ"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Profile" image="profileIcon" style="plain" id="z8B-RZ-icJ">
+                                <connections>
+                                    <action selector="showPatientProfile:" destination="gO9-vI-EM4" id="JuA-cx-akQ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="LOGIN" id="Mpn-3L-wJ1">
+                                <connections>
+                                    <action selector="loginAction:" destination="gO9-vI-EM4" id="D1Z-Sm-cgH"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BcQ-g0-ue3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -193,6 +201,9 @@
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="graphView" destination="w0I-uu-GLf" id="ken-Hh-Xfr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQq-WE-xH1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
