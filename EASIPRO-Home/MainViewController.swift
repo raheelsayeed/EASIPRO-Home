@@ -16,6 +16,7 @@ class MainViewController: UITableViewController {
     
     var measures : [PROMeasure2]?
 
+    @IBOutlet weak var btnLogin: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,10 @@ class MainViewController: UITableViewController {
         return measures?.count ?? 0
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "DUE TODAY"
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PROMCell", for: indexPath) as! PROMCell
         let measure = measures![indexPath.row]
@@ -61,11 +66,13 @@ class MainViewController: UITableViewController {
             print("No patient")
             return
         }
-        
         print("show profile")
     }
     
     @IBAction func refreshPage(_ sender: Any) {
+        if let p = SMARTManager.shared.patient {
+            btnLogin.title = p.humanName
+        }
 		loadMeasures()
     }
 	

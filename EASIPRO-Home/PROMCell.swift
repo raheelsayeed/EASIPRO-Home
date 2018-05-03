@@ -16,6 +16,9 @@ class PROMCell: UITableViewCell {
     @IBOutlet weak var lblSubtitle: UILabel!
     @IBOutlet weak var chartView: LineChartView!
     
+    let upcomingBgColor = UIColor.init(red: 0.976, green: 0.976, blue: 0.976, alpha: 1.0)
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         lblStatus.font = UIFont.monospacedDigitSystemFont(ofSize: 12, weight: .medium)
@@ -31,10 +34,7 @@ class PROMCell: UITableViewCell {
 		chartView.points = measure.scores
 		lblSubtitle.text = measure.identifier
         lblStatus.text = measure.sessionStatus.rawValue
-        
-        
-        
-        
+        backgroundColor = (measure.sessionStatus == .due || measure.sessionStatus == .upcoming) ? UIColor.white : upcomingBgColor
     }
 
 }

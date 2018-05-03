@@ -113,7 +113,8 @@
                             <outlet property="delegate" destination="gO9-vI-EM4" id="sLw-rz-7O3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="PRO Measures" id="uc9-Rb-71v">
+                    <navigationItem key="navigationItem" title="PRO Measures" leftItemsSupplementBackButton="YES" id="uc9-Rb-71v">
+                        <barButtonItem key="backBarButtonItem" title="Main" id="5Zj-oP-udc"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="wEa-6C-qc5">
                             <connections>
                                 <action selector="refreshPage:" destination="gO9-vI-EM4" id="0UV-f3-BLz"/>
@@ -132,6 +133,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="btnLogin" destination="Mpn-3L-wJ1" id="wCv-YI-8ed"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BcQ-g0-ue3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -190,18 +194,22 @@
                             <outlet property="delegate" destination="zpE-bj-PIR" id="gSl-MX-TJs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="IDo-ve-Tna">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="IDo-ve-Tna">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="r9j-bP-leg">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Ji-yC-aYV" customClass="RoundedButton" customModule="EASIPRO">
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="sessionAction:" destination="zpE-bj-PIR" eventType="touchUpInside" id="4N6-8k-JdS"/>
+                                </connections>
                             </button>
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnSession" destination="6Ji-yC-aYV" id="KF3-u3-Jhl"/>
                         <outlet property="graphView" destination="w0I-uu-GLf" id="ken-Hh-Xfr"/>
                     </connections>
                 </tableViewController>
