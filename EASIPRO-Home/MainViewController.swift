@@ -55,6 +55,7 @@ class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     @IBAction func showPatientProfile(_ sender: Any) {
         guard let patient = SMARTManager.shared.patient else {
             print("No patient")
@@ -79,9 +80,15 @@ class MainViewController: UITableViewController {
 		if nil != measures { return }
 		markBusy()
 		PROMeasure2.fetchPrescribingResources { [weak self] (measures, error) in
-			if let m = measures {
-				self?.measures = m
-			}
+            self?.measures = measures
+            self?.measures?.forEach({ (measure) in
+                measure.fetchMeasurementResources(callback: { (success) in
+                    if success {
+                        DispatchQueue.main.async
+                            { self?.tableView.reloadData() }
+                    }
+                })
+            })
 			if let error = error {
 				print(error as Any)
 			}

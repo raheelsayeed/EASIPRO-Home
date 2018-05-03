@@ -18,6 +18,7 @@ class PROMCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        lblStatus.font = UIFont.monospacedDigitSystemFont(ofSize: 12, weight: .medium)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,6 +30,11 @@ class PROMCell: UITableViewCell {
         lblTitle.text = measure.title
 		chartView.points = measure.scores
 		lblSubtitle.text = measure.identifier
+        lblStatus.text = measure.sessionStatus.rawValue
+        
+        
+        
+        
     }
 
 }
