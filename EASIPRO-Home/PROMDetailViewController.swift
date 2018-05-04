@@ -14,6 +14,8 @@ import AssessmentCenter
 class PROMDetailViewController: UITableViewController {
 
 	public var measure : PROMeasure2!
+	
+	var sessionController : SessionController2?
     
 	@IBOutlet weak var graphView: LineGraphView!
 	
@@ -25,8 +27,7 @@ class PROMDetailViewController: UITableViewController {
     }
     
     @IBAction func sessionAction(_ sender: RoundedButton) {
-        
-        
+		
     }
     
     override func viewDidLoad() {

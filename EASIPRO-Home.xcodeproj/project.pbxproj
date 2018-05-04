@@ -25,6 +25,8 @@
 		D4C9EA612098F57E006D41DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4C9EA602098F57E006D41DB /* Assets.xcassets */; };
 		D4C9EA642098F57E006D41DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C9EA622098F57E006D41DB /* LaunchScreen.storyboard */; };
 		D4C9EA6C2098F66F006D41DB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C9EA6B2098F66F006D41DB /* MainViewController.swift */; };
+		D4D30254209BFBFE00125855 /* EP+AssessmentCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D30253209BFBFE00125855 /* EP+AssessmentCenter.swift */; };
+		D4D30256209BFCF800125855 /* EP+ACConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D30255209BFCF800125855 /* EP+ACConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +63,8 @@
 		D4C9EA632098F57E006D41DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4C9EA652098F57E006D41DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4C9EA6B2098F66F006D41DB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D4D30253209BFBFE00125855 /* EP+AssessmentCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EP+AssessmentCenter.swift"; sourceTree = "<group>"; };
+		D4D30255209BFCF800125855 /* EP+ACConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EP+ACConfig.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 				D45DE6392099FA3D00D3C6A2 /* PROMCell.swift */,
 				D45DE640209A0F4000D3C6A2 /* PROInsightsViewController.swift */,
 				D461C7FB209A4C7F0084A85C /* PROMDetailViewController.swift */,
+				D4D30253209BFBFE00125855 /* EP+AssessmentCenter.swift */,
+				D4D30255209BFCF800125855 /* EP+ACConfig.swift */,
 			);
 			path = "EASIPRO-Home";
 			sourceTree = "<group>";
@@ -192,8 +198,10 @@
 				D461C7FC209A4C7F0084A85C /* PROMDetailViewController.swift in Sources */,
 				D45DE63A2099FA3D00D3C6A2 /* PROMCell.swift in Sources */,
 				D4C9EA582098F57E006D41DB /* AppDelegate.swift in Sources */,
+				D4D30254209BFBFE00125855 /* EP+AssessmentCenter.swift in Sources */,
 				D4C9EA6C2098F66F006D41DB /* MainViewController.swift in Sources */,
 				D45DE641209A0F4000D3C6A2 /* PROInsightsViewController.swift in Sources */,
+				D4D30256209BFCF800125855 /* EP+ACConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

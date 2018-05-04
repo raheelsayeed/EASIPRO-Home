@@ -14,7 +14,15 @@ class MainViewController: UITableViewController {
     
     let smartClient = SMARTManager.shared.client
     
-    var measures : [PROMeasure2]?
+	var measures : [PROMeasure2]? {
+		didSet {
+			self.data = PROMeasure2.SortedPROMs(proms: measures)
+		}
+	}
+	
+	var data : [[String:Any]]?
+	
+	
 
     @IBOutlet weak var btnLogin: UIBarButtonItem!
     
@@ -45,21 +53,30 @@ class MainViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+//        return 1
+		return self.data?.count ?? 0
+
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return measures?.count ?? 0
+		let arr = self.data?[section]["data"] as! [PROMeasure2]
+		
+		return arr.count
+//		return measures?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return MainViewController.Today()
+		let status = (self.data![section]["status"] as! String)
+		return (status == "due") ? MainViewController.Today() : status.uppercased()
+
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PROMCell", for: indexPath) as! PROMCell
-        let measure = measures![indexPath.row]
-		cell.configure(for: measure)
+//        let measure = measures![indexPath.row]
+		let prlist = self.data![indexPath.section]["data"] as! [PROMeasure2]
+		let assessment = prlist[indexPath.item]
+		cell.configure(for: assessment)
         return cell
     }
     
@@ -77,7 +94,7 @@ class MainViewController: UITableViewController {
     
     @IBAction func refreshPage(_ sender: Any) {
         if let p = SMARTManager.shared.patient {
-            btnLogin.title = p.humanName
+            btnLogin.title = ""
         }
 		loadMeasures()
     }
@@ -119,7 +136,8 @@ class MainViewController: UITableViewController {
 	
 	
 	open func markStandby() {
-		self.title = "PRO-Measures"
+		let _title = SMARTManager.shared.patient?.humanName ?? "PRO-Measures"
+		self.title = _title
 		self.tableView.reloadData()
 	}
 	
