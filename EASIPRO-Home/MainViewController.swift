@@ -145,8 +145,11 @@ class MainViewController: UITableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		print(segue)
 		if let detailVC = segue.destination as? PROMDetailViewController, segue.identifier == "showDetail" {
-			let measure = measures![(tableView.indexPathForSelectedRow?.row)!]
+			if let ip = tableView.indexPathForSelectedRow {
+			let prlist = self.data![ip.section]["data"] as! [PROMeasure2]
+			let measure = prlist[ip.item]
 			detailVC.measure = measure
+			}
 		}
 	}
 }
