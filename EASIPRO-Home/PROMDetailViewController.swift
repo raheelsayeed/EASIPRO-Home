@@ -27,6 +27,15 @@ class PROMDetailViewController: UITableViewController {
     }
     
     @IBAction func sessionAction(_ sender: RoundedButton) {
+        
+        sessionController = SessionController2(patient: SMARTManager.shared.patient!, measures: [measure], practitioner: nil)
+        
+        sessionController?.prepareSessionContainer(callback: { [weak self] (viewController, error) in
+            if let viewController = viewController {
+                viewController.view.tintColor = .red
+                self?.present(viewController, animated: true, completion: nil)
+            }
+        })
 		
     }
     
@@ -60,13 +69,13 @@ class PROMDetailViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Recordings"
+        return "SCORES"
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OCell", for: indexPath)
 		let o = measure.results![indexPath.row]
-        cell.textLabel?.text = o.effectiveDateTime?.date.description
+        cell.textLabel?.text = o.effectiveDateTime?.nsDate.shortDate
         cell.detailTextLabel?.text = o.valueString!.string
         return cell
     }

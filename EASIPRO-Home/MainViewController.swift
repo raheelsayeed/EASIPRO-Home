@@ -73,7 +73,6 @@ class MainViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PROMCell", for: indexPath) as! PROMCell
-//        let measure = measures![indexPath.row]
 		let prlist = self.data![indexPath.section]["data"] as! [PROMeasure2]
 		let assessment = prlist[indexPath.item]
 		cell.configure(for: assessment)

@@ -30,11 +30,13 @@ class PROMCell: UITableViewCell {
     }
     
     func configure(for measure: PROMeasure2) {
+        let status = measure.sessionStatus
+        let isDue  = status == .due
         lblTitle.text = measure.title
 		chartView.points = measure.scores
-		lblSubtitle.text = measure.identifier
-        lblStatus.text = measure.sessionStatus.rawValue
-        backgroundColor = (measure.sessionStatus == .due || measure.sessionStatus == .upcoming) ? UIColor.white : upcomingBgColor
+        lblSubtitle.text = (measure.prescriber != nil) ? "REQUESTED BY \(measure.prescriber!)" : measure.identifier
+        lblStatus.text = (isDue) ? status.rawValue : (measure.schedule?.periodString() ?? status.rawValue)
+        backgroundColor = (isDue || measure.sessionStatus == .upcoming) ? UIColor.white : upcomingBgColor
     }
 
 }
