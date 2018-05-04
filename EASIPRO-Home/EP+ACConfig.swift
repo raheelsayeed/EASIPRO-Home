@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import EASIPRO
 import AssessmentCenter
 
-extension EASIPRO.SessionController2 {
+extension ACForm {
 	
-	public class func ACForms() -> [ACForm] {
+	public class func SampleForms() -> [ACForm] {
 		
 		return [
 			ACForm(_oid: "EFB1133D-429E-4C9D-B322-32C614CB3C9D", _title: "PROMIS Sleep", _loinc: nil),
@@ -21,8 +20,11 @@ extension EASIPRO.SessionController2 {
 		]
 	}
 	
+}
+
+extension ACClient {
 	
-	public class func CreateClient() -> ACClient {
+	public class func NewClient() -> ACClient {
 		
 		let baseURLString = "https://www.assessmentcenter.net/ac_api/2014-01/"
 		let accessID = "9E9A29C1-DD01-49F6-8D15-74338F673394"
