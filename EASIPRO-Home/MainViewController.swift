@@ -20,7 +20,13 @@ class MainViewController: UITableViewController {
 		}
 	}
 	
-	var data : [[String:Any]]?
+	var data : [[String:Any]]? {
+		didSet {
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
+			}
+		}
+	}
 	
 	
 
@@ -28,9 +34,14 @@ class MainViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .automatic
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
-		loadMeasures()
+		tableView.backgroundColor = UIColor.init(red: 0.976, green: 0.976, blue: 0.976, alpha: 1.0)
+		weak var weakSelf = self
+		SMARTManager.shared.onPatientSelected = {
+			DispatchQueue.main.async {
+				weakSelf?.loadMeasures()
+			}
+		}
     }
     class func Today()->String {
         let formatter = DateFormatter()
@@ -53,16 +64,12 @@ class MainViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
 		return self.data?.count ?? 0
-
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let arr = self.data?[section]["data"] as! [PROMeasure2]
-		
 		return arr.count
-//		return measures?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -92,9 +99,6 @@ class MainViewController: UITableViewController {
     }
     
     @IBAction func refreshPage(_ sender: Any) {
-        if let p = SMARTManager.shared.patient {
-            btnLogin.title = ""
-        }
 		loadMeasures()
     }
 	
@@ -105,25 +109,34 @@ class MainViewController: UITableViewController {
 			}
 		}
 	}
+	
+	func reloadOnMain() {
+		DispatchQueue.main.async {
+			self.tableView.reloadData()
+		}
+	}
+	
 	open func loadMeasures() {
-		if nil != measures { return }
+		guard let p = SMARTManager.shared.patient else { return }
 		markBusy()
-		PROMeasure2.fetchPrescribingResources { [weak self] (measures, error) in
+		PROMeasure2.fetchPrescribingResources(for: p) { [weak self] (measures, error) in
             self?.measures = measures
             self?.measures?.forEach({ (measure) in
-                measure.fetchMeasurementResources(callback: { (success) in
+                measure.fetchMeasurementResources(callback: {  (success) in
+					self?.data = PROMeasure2.SortedPROMs(proms: self?.measures)
                     if success {
-                        DispatchQueue.main.async
-                            { self?.tableView.reloadData() }
+						self?.reloadOnMain()
                     }
                 })
             })
 			if let error = error {
-				print(error as Any)
+				print(error.asFHIRError.description as Any)
+				
+				
 			}
-			DispatchQueue.main.async {
-				self?.markStandby()
-			}
+			self?.markStandby()
+
+			
 		}
 		
 	}
@@ -135,9 +148,14 @@ class MainViewController: UITableViewController {
 	
 	
 	open func markStandby() {
-		let _title = SMARTManager.shared.patient?.humanName ?? "PRO-Measures"
-		self.title = _title
-		self.tableView.reloadData()
+		DispatchQueue.main.async {
+			let _title = SMARTManager.shared.patient?.humanName ?? "PRO-Measures"
+			self.title = _title
+			self.tableView.reloadData()
+			if SMARTManager.shared.patient != nil {
+				self.btnLogin.title = ""
+			}
+		}
 	}
 	
 	

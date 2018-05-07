@@ -13,6 +13,22 @@ import ResearchKit
 import SMART
 
 
+extension AssessmentCenter.ACForm {
+	
+	func proMeasure() -> PROMeasure2 {
+		let identifier = measureIdentifier()
+		let title = self.title ?? identifier
+		let prom = PROMeasure2(title: title, identifier: identifier)
+		prom.measure = self
+		return prom
+	}
+	
+	func measureIdentifier() -> String {
+		return loinc ?? OID
+	}
+	
+}
+
 extension EASIPRO.SessionController2 {
 	
 	open func prepareSessionContainer(callback: @escaping ((UIViewController?, Error?) -> Void)) {
@@ -21,14 +37,18 @@ extension EASIPRO.SessionController2 {
             print("Abort prepareSession")
             return
         }
-        
-        let acForms = measures.map { (m) -> ACForm? in
-            if let ac_coding = m.prescribingResource?.ep_coding(for: "http://www.assessmentcenter.net") {
-                let form = ACForm(_oid: ac_coding.code!.string, _title: ac_coding.display!.string, _loinc: nil)
-                return form
-            }
-            return nil
-            }.flatMap { $0 }
+		
+		let acForms = measures.map { (m) -> ACForm? in
+			if let ac_coding = m.prescribingResource?.ep_coding(for: "http://www.assessmentcenter.net") {
+				let form = ACForm(_oid: ac_coding.code!.string, _title: ac_coding.display!.string, _loinc: nil)
+				m.measure = form as AnyObject
+				return form
+			}
+			return nil
+			}.flatMap { $0 }
+		
+		
+
         
         let acclient = ACClient.NewClient()
         acclient.forms(acforms: acForms, completion: { [weak self] (completedForms) in
@@ -92,12 +112,8 @@ extension EASIPRO.SessionController2 : ACTaskViewControllerDelegate {
                 do {
                     let observationFHIR = try Observation(json: observation!)
                     observationFHIR.createAndReturn(SMARTManager.shared.client.server, callback: { (error) in
-                        print("Observation:", observationFHIR.id?.string)
-                        if let onMeasureCompletion = self?.onMeasureCompletion {
-                            DispatchQueue.main.async {
-                                onMeasureCompletion(form, nil)
-                            }
-                        }
+                        print("Observation:", observationFHIR.id?.string as Any)
+						self?.onMeasureCompletion?(observationFHIR, form.proMeasure())
                     })
                 }
                 catch {
@@ -109,4 +125,12 @@ extension EASIPRO.SessionController2 : ACTaskViewControllerDelegate {
             print(error.localizedDescription)
         }
     }
+}
+
+
+extension ProcedureRequest {
+	
+	public func ep_AssessmentCenterCode() -> String? {
+		return ep_coding(for: "http://www.assessmentcenter.net")?.code?.string
+	}
 }

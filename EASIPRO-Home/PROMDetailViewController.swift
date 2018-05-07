@@ -37,18 +37,38 @@ class PROMDetailViewController: UITableViewController {
             }
         })
 		
+		sessionController?.onMeasureCompletion = { [weak self] result, measure in
+			
+			if let result = result, let acform = measure?.measure as? ACForm {
+				if acform == (self?.measure.measure as? ACForm) {
+					var results = self?.measure.results
+					results?.append(result)
+					self?.measure.results = results
+				}
+				
+			}
+			self?.reload()
+		}
+		
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = measure.identifier
-		if let scores = measure.scores {
-			graphView.graphPoints = scores
-		}
+		title = "REQ: #\(measure.identifier)"
 		graphView.title = measure.title
-		graphView.subtitle = measure.identifier
-        btnSession.isHidden = (measure.sessionStatus != .due)
+		graphView.subtitle = measure.prescribingResource?.ep_coding(for: "http://loinc.org")?.code?.string ?? measure.identifier
+		reload()
     }
+	
+	
+	func reload() {
+		DispatchQueue.main.async {
+			self.tableView.reloadData()
+			if let scores = self.measure.scores {
+				self.graphView.graphPoints = scores
+			}
+		}
+	}
 	
 	
     
@@ -74,7 +94,7 @@ class PROMDetailViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OCell", for: indexPath)
-		let o = measure.results![indexPath.row]
+		let o = measure.results!.reversed()[indexPath.row]
         cell.textLabel?.text = o.effectiveDateTime?.nsDate.shortDate
         cell.detailTextLabel?.text = o.valueString!.string
         return cell

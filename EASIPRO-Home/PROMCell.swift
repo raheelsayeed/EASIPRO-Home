@@ -16,12 +16,14 @@ class PROMCell: UITableViewCell {
     @IBOutlet weak var lblSubtitle: UILabel!
     @IBOutlet weak var chartView: LineChartView!
     
-    let upcomingBgColor = UIColor.init(red: 0.976, green: 0.976, blue: 0.976, alpha: 1.0)
+	var upcomingBgColor : UIColor? = UIColor.init(red: 0.976, green: 0.976, blue: 0.976, alpha: 1.0)
 
     
     override func awakeFromNib() {
         super.awakeFromNib()
         lblStatus.font = UIFont.monospacedDigitSystemFont(ofSize: 12, weight: .medium)
+		upcomingBgColor = self.superview?.backgroundColor
+		chartView.backgroundColor = UIColor.clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,11 +34,26 @@ class PROMCell: UITableViewCell {
     func configure(for measure: PROMeasure2) {
         let status = measure.sessionStatus
         let isDue  = status == .due
+		
+		print(status.rawValue)
+		print(measure.title)
+		print(measure.schedule?.periodString())
         lblTitle.text = measure.title
 		chartView.points = measure.scores
         lblSubtitle.text = (measure.prescriber != nil) ? "REQUESTED BY \(measure.prescriber!)" : measure.identifier
-        lblStatus.text = (isDue) ? status.rawValue : (measure.schedule?.periodString() ?? status.rawValue)
-        backgroundColor = (isDue || measure.sessionStatus == .upcoming) ? UIColor.white : upcomingBgColor
+		
+		if status == .due {
+			lblStatus.text = status.rawValue
+			backgroundColor = UIColor.white
+		}
+		else if status == .upcoming || status == .completedCurrent {
+			lblStatus.text = "DUE ON " + (measure.schedule?.nextSlot?.period.start.shortDate)!
+			backgroundColor = upcomingBgColor
+		}
+		else {
+			lblStatus.text = status.rawValue
+			backgroundColor = upcomingBgColor
+		}
     }
 
 }
