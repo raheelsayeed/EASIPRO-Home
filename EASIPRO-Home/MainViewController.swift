@@ -91,6 +91,8 @@ class MainViewController: UITableViewController {
     }
     
     @IBAction func showPatientProfile(_ sender: Any) {
+		
+		loginAction(sender)
         guard let patient = SMARTManager.shared.patient else {
             print("No patient")
             return
