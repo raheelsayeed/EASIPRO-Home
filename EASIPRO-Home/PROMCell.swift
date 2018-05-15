@@ -34,11 +34,14 @@ class PROMCell: UITableViewCell {
     func configure(for measure: PROMeasure2) {
         let status = measure.sessionStatus
         let isDue  = status == .due
+        
+        
 		
 		print(status.rawValue)
 		print(measure.title)
 		print(measure.schedule?.periodString())
         lblTitle.text = measure.title
+        chartView.setThresholds([55,60,70], highNormal: false, _grayScale: false)
 		chartView.points = measure.scores
         lblSubtitle.text = (measure.prescriber != nil) ? "REQUESTED BY \(measure.prescriber!)" : measure.identifier
 		
