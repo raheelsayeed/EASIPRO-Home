@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -165,13 +165,18 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="242"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w0I-uu-GLf" customClass="LineGraphView" customModule="EASIPRO">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w0I-uu-GLf" customClass="LineGraphView" customModule="EASIPRO">
                                     <rect key="frame" x="8" y="8" width="359" height="225"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="w0I-uu-GLf" firstAttribute="leading" secondItem="wzq-XA-bV8" secondAttribute="leading" constant="8" id="95u-7I-ahU"/>
+                                <constraint firstAttribute="bottom" secondItem="w0I-uu-GLf" secondAttribute="bottom" constant="9" id="Eu9-Z2-xC2"/>
+                                <constraint firstItem="w0I-uu-GLf" firstAttribute="top" secondItem="wzq-XA-bV8" secondAttribute="top" constant="8" id="QZs-H7-SCm"/>
+                                <constraint firstAttribute="trailing" secondItem="w0I-uu-GLf" secondAttribute="trailing" constant="8" id="Z9R-8V-4CA"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OCell" textLabel="oRt-ao-jxe" detailTextLabel="ZkX-zZ-6V5" style="IBUITableViewCellStyleValue1" id="zXK-g0-IGJ">
