@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4587A6C20AD2B7E00F34744 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4587A6B20AD2B7E00F34744 /* Config.xcconfig */; };
 		D45DE63A2099FA3D00D3C6A2 /* PROMCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45DE6392099FA3D00D3C6A2 /* PROMCell.swift */; };
 		D45DE641209A0F4000D3C6A2 /* PROInsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45DE640209A0F4000D3C6A2 /* PROInsightsViewController.swift */; };
 		D461C7FC209A4C7F0084A85C /* PROMDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D461C7FB209A4C7F0084A85C /* PROMDetailViewController.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D4587A6B20AD2B7E00F34744 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		D45DE6392099FA3D00D3C6A2 /* PROMCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PROMCell.swift; sourceTree = "<group>"; };
 		D45DE640209A0F4000D3C6A2 /* PROInsightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PROInsightsViewController.swift; sourceTree = "<group>"; };
 		D461C7FB209A4C7F0084A85C /* PROMDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PROMDetailViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		D4C9EA4B2098F57E006D41DB = {
 			isa = PBXGroup;
 			children = (
+				D4587A6B20AD2B7E00F34744 /* Config.xcconfig */,
 				D4AD20B7209AADAA0050AF19 /* EASIPRO.framework */,
 				D4AD20B4209AADA50050AF19 /* SwiftFHIR.framework */,
 				D4AD20B1209AAD990050AF19 /* SMART.framework */,
@@ -182,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4587A6C20AD2B7E00F34744 /* Config.xcconfig in Resources */,
 				D4C9EA642098F57E006D41DB /* LaunchScreen.storyboard in Resources */,
 				D4C9EA612098F57E006D41DB /* Assets.xcassets in Resources */,
 				D4C9EA5F2098F57E006D41DB /* Main.storyboard in Resources */,
@@ -229,6 +233,7 @@
 /* Begin XCBuildConfiguration section */
 		D4C9EA662098F57E006D41DB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4587A6B20AD2B7E00F34744 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -286,6 +291,7 @@
 		};
 		D4C9EA672098F57E006D41DB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4587A6B20AD2B7E00F34744 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
