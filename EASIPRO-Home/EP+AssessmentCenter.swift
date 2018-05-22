@@ -40,7 +40,7 @@ extension EASIPRO.SessionController2 {
 		
 		let acForms = measures.map { (m) -> ACForm? in
 			if let ac_coding = m.prescribingResource?.ep_coding(for: "http://www.assessmentcenter.net") {
-				let form = ACForm(_oid: ac_coding.code!.string, _title: ac_coding.display!.string, _loinc: nil)
+				let form = ACForm(_oid: ac_coding.code!.string, _title: ac_coding.display!.string, _loinc: m.prescribingResource?.ep_loincCode())
 				m.measure = form as AnyObject
 				return form
 			}
